@@ -37,4 +37,18 @@ public class NewWord {
 			add(c);
 	}
 
+	public String toString() {
+		String out = "";
+		for (Pair occ: occurrences)
+			out += occ.c + ":" + occ.n + '\n';
+		return out;
+	}
+
+	public boolean leq(NewWord other) {
+		for (Pair occ: occurrences)
+			if (other.get(occ.c) < occ.n)
+				return false;
+		return true;
+	}
+
 }
