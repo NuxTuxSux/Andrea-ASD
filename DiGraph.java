@@ -25,6 +25,10 @@ class DiGraph {
 		int h = heights.get(node);
 		if (h > -1)
 			return h;
+
+		if (sons.get(node).isEmpty())
+			return 0;
+
 		
 	}
 
