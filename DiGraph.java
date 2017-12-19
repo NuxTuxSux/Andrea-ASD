@@ -5,13 +5,13 @@ class DiGraph {
 	public int N;
 	private List<List<Integer>> sons;
 	private List<Integer> heights;
-	//public int
-
+	
 	public DiGraph(int N) {
 		this.N = N;
-		this.sons = new ArrayList<List<Integer>>(N);
-		for (List<Integer> nodeSons: this.sons) {
-			nodeSons = new ArrayList<Integer>();
+		this.sons = new ArrayList<List<Integer>>();
+		this.heights = new ArrayList<Integer>();
+		for (int node = 0; node < N; node++) {
+			this.sons.add(new ArrayList<Integer>());
 			heights.add(-1);
 		}
 	}
@@ -26,10 +26,20 @@ class DiGraph {
 		if (h > -1)
 			return h;
 
-		if (sons.get(node).isEmpty())
-			return 0;
+		int maxHeight = -1;
+		int presentHeight;
+		for (int son: sons.get(node)) {
+			presentHeight = height(son);
+			if (presentHeight > maxHeight)
+				maxHeight = presentHeight;
+		}
+		maxHeight++;
 
-		
+		heights.set(node,maxHeight);
+		return maxHeight;
 	}
 
+	public int diameter() {
+		return Collections.max(this.heights);
+	}
 }
