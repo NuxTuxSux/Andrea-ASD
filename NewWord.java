@@ -13,6 +13,8 @@ public class NewWord {
 
 	List<Pair> occurrences;
 
+	int length;
+
 	public void add(char c) {
 		for (Pair occ: occurrences)
 			if (occ.c == c) {
@@ -32,7 +34,7 @@ public class NewWord {
 
 	public NewWord(String raw) {
 		occurrences = new ArrayList<Pair>();
-
+		length = raw.length();
 		for (char c: raw.toCharArray())
 			add(c);
 	}
@@ -51,4 +53,11 @@ public class NewWord {
 		return true;
 	}
 
+	public boolean lessThan(NewWord other) {
+		return (length < other.length) && lessThan(other);
+	}
+
+//	public boolean geq(NewWord other) {
+//		return other.leq(this);
+//	}
 }
