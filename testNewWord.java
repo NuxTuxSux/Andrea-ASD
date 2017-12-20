@@ -18,6 +18,9 @@ class testNewWord {
 			prima = new NewWord(scanner.next());
 			System.out.print("Seconda:");
 			seconda = new NewWord(scanner.next());
+			if (prima.lessThan(seconda)) {
+				System.out.println("La prima è minore strettamente della seconda");
+			}
 			if (prima.leq(seconda)) {
 				if (seconda.leq(prima)) {
 					System.out.println("Le due parole sono anagrammi");

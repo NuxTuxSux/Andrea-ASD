@@ -10,6 +10,7 @@ class DiGraph {
 		this.N = N;
 		this.sons = new ArrayList<List<Integer>>();
 		this.heights = new ArrayList<Integer>();
+
 		for (int node = 0; node < N; node++) {
 			this.sons.add(new ArrayList<Integer>());
 			heights.add(-1);
@@ -40,6 +41,13 @@ class DiGraph {
 	}
 
 	public int diameter() {
-		return Collections.max(this.heights);
+		int maxHeight = -1;
+		int nodeHeight;
+		for (int i = 0; i < N; i++) {
+			nodeHeight = height(i);
+			if (nodeHeight > maxHeight)
+				maxHeight = nodeHeight;
+		}
+		return maxHeight;
 	}
 }

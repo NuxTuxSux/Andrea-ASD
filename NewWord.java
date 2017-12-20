@@ -13,7 +13,7 @@ public class NewWord {
 
 	List<Pair> occurrences;
 
-	int length;
+	public int length;
 
 	public void add(char c) {
 		for (Pair occ: occurrences)
@@ -54,7 +54,7 @@ public class NewWord {
 	}
 
 	public boolean lessThan(NewWord other) {
-		return (length < other.length) && lessThan(other);
+		return (length < other.length) && leq(other);
 	}
 
 //	public boolean geq(NewWord other) {
