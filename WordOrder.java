@@ -2,17 +2,25 @@ import java.util.*;
 
 class WordOrder {
 
+	static final boolean SILENT = false;
+
 	public static void main(String args[]) {
-		Scanner scanner = new Scanner(System.in);
-		String wordsFirst [] = scanner.nextLine().split("\\s+");
+		String wordsFirst [];
+		if (args.length > 0) {
+			wordsFirst = new String [args.length];
+			System.arraycopy(args, 0, wordsFirst, 0, args.length);
+		} else {
+			Scanner scanner = new Scanner(System.in);
+			wordsFirst = scanner.nextLine().split("\\s+");
+		}
 
 		List<NewWord> wordOccs = new ArrayList<NewWord>();
 
 		int nWords = 0;
 
-		// Considero solo le parole distinte
 		List<String> words = new ArrayList<String>();
-		boolean isNew;
+		// Considero solo le parole distinte
+		/*boolean isNew;
 		for (String w1: wordsFirst) {
 			isNew = true;
 			for (String w2: words)
@@ -24,8 +32,11 @@ class WordOrder {
 				words.add(w1);
 				nWords++;
 			}
-		}
-
+		}*/
+		//--
+		Set<String> setWords = new Set<String>(Arrays.asList(wordsFirst));
+		nWords = setWords.size();
+		words = setWords.asList();
 
 
 		DiGraph graph = new DiGraph(nWords);
@@ -50,9 +61,10 @@ class WordOrder {
 		}
 
 		dotGraph.append("}");
-
-		System.out.println(graph.diameter());
-		System.out.println(dotGraph);
+		if (!SILENT) {
+			System.out.println(graph.diameter());
+			System.out.println(dotGraph);
+		}
 
 	}
 }

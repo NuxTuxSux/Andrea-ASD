@@ -1,0 +1,11 @@
+#!/usr/bin/python
+x=raw_input('')
+print(0)
+x=raw_input('')
+print(0)
+x=raw_input('')
+print(0)
+x=raw_input('')
+print(0)
+x=raw_input('')
+print(0)
