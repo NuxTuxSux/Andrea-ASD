@@ -29,7 +29,7 @@ class Set<T extends Comparable<T>> {
 
 	public String toString() {
 		String out = repr.toString();
-		return "{" + repr.toString().substring(1,out.length()-2) + "}";
+		return "{" + repr.toString().substring(1,out.length()-1) + "}";
 	}
 
 	public List<T> asList() {
