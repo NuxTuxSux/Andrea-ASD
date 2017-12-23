@@ -19,21 +19,6 @@ class WordOrder {
 		int nWords = 0;
 
 		List<String> words = new ArrayList<String>();
-		// Considero solo le parole distinte
-		/*boolean isNew;
-		for (String w1: wordsFirst) {
-			isNew = true;
-			for (String w2: words)
-				if (w1.equals(w2)) {
-					isNew = false;
-					break;
-				}
-			if (isNew) {
-				words.add(w1);
-				nWords++;
-			}
-		}*/
-		//--
 		Set<String> setWords = new Set<String>(Arrays.asList(wordsFirst));
 		nWords = setWords.size();
 		words = setWords.asList();
