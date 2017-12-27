@@ -41,14 +41,14 @@ public class RandomGenerator {
    public double get()
    {      
       double lo, hi, test;
-      System.out.println();
-      System.out.println("seed:"+seed);
+      //System.out.println();
+      //System.out.println("seed:"+seed);
       hi = Math.ceil(seed / q);
-      System.out.println("hi:"+hi);
+      //System.out.println("hi:"+hi);
       lo = seed - q * hi;
-      System.out.println("lo:"+lo);
+      //System.out.println("lo:"+lo);
       test = a * lo - r * hi;
-      System.out.println("test:"+test);
+      //System.out.println("test:"+test);
       
       if (test < 0.0) {
          seed = test + m;
