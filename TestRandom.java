@@ -12,7 +12,7 @@ class TestRandom {
 		System.out.println(System.currentTimeMillis());*/
 		System.out.println(millisecs);
 		
-		System.out.println("Prima chiamata get:" + gen.get());
+		System.out.println("Prima chiamata rnd:" + gen.rnd());
 
 		float mean = 0;
 		for (int i = 0; i < 10000000; i++)
@@ -21,7 +21,21 @@ class TestRandom {
 
 		mean = 0;
 		for (int i = 0; i < 10000000; i++)
-			mean += gen.get();
-		System.out.println("get mean:" + mean / 10000000);
+			mean += gen.rnd();
+		System.out.println("rnd mean:" + mean / 10000000);
+
+		System.out.println("Test Dado:");
+		for (int i = 0; i < 250; i++)
+			System.out.print(gen.rnd(1,7) + " ");
+		
+		System.out.println();
+		System.out.println("Test Caratteri:");
+		for (int i = 0; i < 5000; i++)
+			System.out.print(gen.rndChr());
+		System.out.println();
+
+		
+
+
 	}
 }

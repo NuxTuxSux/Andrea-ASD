@@ -1,8 +1,4 @@
-// La classe Randomizer è una copia dell'algoritmo 8 Random(seed) sugli appunti del professore Policriti
-
-// Update: Aggiunto un costruttore di default ed una funzione setSeed, in questo modo non si
-// è costretti passare il seed nel momento in cui si istanzia la classe ed/od è possibile modificare il
-// valore del seed in qualunque momento.
+// La classe è una copia dell'algoritmo 8 Random(seed) sugli appunti del professore Policriti
 
 
 //
@@ -19,9 +15,11 @@ public class RandomGenerator {
    static int r = 2836;
 
    // Probabilità di estrazione di un carattere secondo lo schema:
-   // {lettera maiusc-minusc, cifra, spazio, a-capo}
+   // {lettera-maiusc, lettera-minusc, cifra, spazio, a-capo}
    // la somma è minore di uno per permettere altri caratteri "strani"
-   static double prob [] = {0.5, 0.25, 0.125, 0.0078125};
+   static double prob [] = {0.25, 0.25, 0.25, 0.125, 0.007};
+
+   static char interv [][] = {{65,91},{97,123},{48,58}};
 
    private double seed;
 
@@ -35,20 +33,15 @@ public class RandomGenerator {
    }
 
    //
-   // get(): restituisce un numero compreso tra 0 e 1 (e aggiorna il seme)
+   // rnd(): restituisce un numero compreso tra 0 e 1 (e aggiorna il seme)
    //
 
-   public double get()
+   public double rnd()
    {      
       double lo, hi, test;
-      //System.out.println();
-      //System.out.println("seed:"+seed);
       hi = Math.ceil(seed / q);
-      //System.out.println("hi:"+hi);
       lo = seed - q * hi;
-      //System.out.println("lo:"+lo);
       test = a * lo - r * hi;
-      //System.out.println("test:"+test);
       
       if (test < 0.0) {
          seed = test + m;
@@ -58,6 +51,11 @@ public class RandomGenerator {
       return seed / m;
    }
 
+   public int rnd(int a, int b) {
+      return (int)Math.ceil(rnd()*(b-a)+a-1);
+   }
+
+   // versione alternativa del generatore di numeri casuali
    public double myRand() {
       long hi, lo;
    
@@ -69,20 +67,30 @@ public class RandomGenerator {
       return (double)(seed / m);
    }
 
-   public char getChar() {
-      return 0;
+   // Restituisce un carattere casuale seguendo le probabilità date da prob[][]
+   public char rndChr() {
+      double choice = rnd();
+      int res;
+      if (choice < prob[0]) {
+         // return an uppercase letter
+         return (char)rnd(interv[0][0],interv[0][1]);
+      } else if (choice < prob[0] + prob[1]) {
+         // return a lowercase letter
+         return (char)rnd(interv[1][0],interv[1][1]);
+      } else if (choice < prob[0] + prob[1] + prob[2]) {
+         // return a digit
+         return (char)rnd(interv[0][0],interv[0][1]);
+      } else if (choice < prob[0] + prob[1] + prob[2] + prob[3]) {
+         // return a space
+         return ' ';
+      } else if (choice < prob[0] + prob[1] + prob[2] + prob[3] + prob[4]) {
+         // return a newline-end of string
+         return '\n';
+      } else {
+         // return a random char
+         return (char)rnd(33,127);
+      }
    }
 
-   public char getLetter() {
-      return 0;
-   }
-
-   public char getDigit() {
-      return 0;
-   }
-
-   public char getStrangeChar() {
-      return 0;
-   }
 
 }
